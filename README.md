@@ -18,6 +18,13 @@ My hope is that this will become the go-to handbook for all grok needs
 **README**  
 This part will contain tips that hopefully will be reusable in more systems then just Graylog, but at this point, I can't make any promises. See this part of the guide as examples on how you could handle log-files where one message stretches over multiple lines.
 
+## Using backreferences to match multiple lines
+
+The links below contains tips on how to manage multiline messages and the link about regex-backreferences is for a specific case I'm currently trying to solve at work; how to handle multiline logs where a change in a specific field means it's a new message.
+
+- Filebeat: [Manage multiline messages](https://www.elastic.co/guide/en/beats/filebeat/current/multiline-examples.html)
+- Filebeat: [Examples of multiline configuration](https://www.elastic.co/guide/en/beats/filebeat/current/_examples_of_multiline_configuration.html)
+- Regex: [Using Backreferences To Match The Same Text Again](https://www.regular-expressions.info/backref.html])
 
 ### Use regex anchor-points!
 
