@@ -18,3 +18,9 @@ My hope is that this will become the go-to handbook for all grok needs
 # Test your Grok-patterns
 - [Test grok patterns](http://grokconstructor.appspot.com/do/match)
 - [Grok Debugger](https://grokdebug.herokuapp.com/)
+
+# Sources of information
+
+- Regex anchor-points and how they solve performance-issues [Do you grok?](https://www.elastic.co/blog/do-you-grok-grok)
+- [Logstash Grok filter plugin](https://www.elastic.co/guide/en/logstash/current/plugins-filters-grok.html)
+- 
