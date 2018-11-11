@@ -19,7 +19,7 @@ But why would you even want to combine them? Why not just make an entirely new o
 The simple answer is that it's a lot easier to read a pattern written in human readable names, plus you gain the ability to reuse the individual parts for other patterns later.
 Take these two examples:
 
-```json
+```yaml
 filter {
     grok {
             match => { "message" => "%{COMMONAPACHELOG}" }
