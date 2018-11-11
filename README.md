@@ -40,7 +40,7 @@ But how would this look if it printed out as a regular expression instead?
 ```
 
 If you tried scrolling all the way to the right on the example above, you'll realize just how unruly good regular expressions can become if the logs you're parsing have a complex format.
-And if you've played with regular expressions, you'll know just how difficult it can be sometimes to write a regular expression that matches **ONLY** what you're looking for, but thanks to the rest of your grok patterns that you probably have supplied, it's ok if one grok pattern could match incorrectly since you're only asking it to match after something else and/or before something else.
+And if you've played with regular expressions, you'll know just how difficult it can be sometimes to write a regular expression that matches **ONLY** what you're looking for, but thanks to the rest of your grok patterns that you've (probably) supplied, it's ok if one grok pattern could match more then what you want since you're only asking it to match a string/pattern before and/or after something else.
 The entire string/pattern must match or the pattern isn't considered a match! 
 
 ## How to build a Grok-pattern using "default" patterns
