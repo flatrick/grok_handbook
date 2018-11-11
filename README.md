@@ -61,7 +61,7 @@ The links below contains tips on how to manage multiline messages and the link a
 
 - Filebeat: [Manage multiline messages](https://www.elastic.co/guide/en/beats/filebeat/current/multiline-examples.html)
 - Filebeat: [Examples of multiline configuration](https://www.elastic.co/guide/en/beats/filebeat/current/_examples_of_multiline_configuration.html)
-- Regex: [Using Backreferences To Match The Same Text Again](https://www.regular-expressions.info/backref.html])
+- Regex: [Using Backreferences To Match The Same Text Again](https://www.regular-expressions.info/backref.html)
 
 ### Use anchor-points!
 
