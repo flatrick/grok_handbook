@@ -3,9 +3,41 @@ My hope is that this will become the go-to handbook for all grok needs
 
 # What is Grok?
 
-## What are regex/regexp/Regular Expressions?
+## What are Regular Expressions?
+
+Regular Expressions, or sometimes called regex/regexp, is a "string-/pattern-matching language" for use with pieces of text.  
+The beauty of it shines with large or even massive text-files (both as in massive singular files or as in massive amount of files) and it's capabilities to find strings/patterns of your choice.
+It is however, not always the most easy thing to read, especially for someone who've never even tried writing one before.
+
 
 # What are grok patterns?
+
+Grok patterns are in essence just regular expresssions split into parts of the pattern made easy to read with human readable names instead of "weird" syntax that you would have to interpret.
+You can even create a grok pattern by combining multiple pre-existing grok patterns (it's in fact very common to do so).
+But why would you even want to combine them? Why not just make an entirely new one?   
+  
+The simple answer is that it's a lot easier to read a pattern written in human readable names, plus you gain the ability to reuse the individual parts for other patterns later.
+Take these two examples:
+
+```json
+filter {
+    grok {
+            match => { "message" => "%{COMMONAPACHELOG}" }
+    }
+}
+```
+
+`%{COMMONAPACHELOG}` is a commonly used Grok pattern that actually consists of multiple grok patterns.
+It's definition is as follows:  
+
+`COMMONAPACHELOG %{IPORHOST:clientip} %{HTTPDUSER:ident} %{USER:auth} \[%{HTTPDATE:timestamp}\] "(?:%{WORD:verb} %{NOTSPACE:request}(?: HTTP/%{NUMBER:httpversion})?|%{DATA:rawrequest})" %{NUMBER:response} (?:%{NUMBER:bytes}|-)`  
+  
+But how would this look if it printed out as a regular expression instead?
+(I honestly began doing it for the entire string but gave up long before halfway, so the example below is just for **IPORHOST**)
+
+```perl
+((((([0-9A-Fa-f]{1,4}:){7}([0-9A-Fa-f]{1,4}|:))|(([0-9A-Fa-f]{1,4}:){6}(:[0-9A-Fa-f]{1,4}|((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3})|:))|(([0-9A-Fa-f]{1,4}:){5}(((:[0-9A-Fa-f]{1,4}){1,2})|:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3})|:))|(([0-9A-Fa-f]{1,4}:){4}(((:[0-9A-Fa-f]{1,4}){1,3})|((:[0-9A-Fa-f]{1,4})?:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){3}(((:[0-9A-Fa-f]{1,4}){1,4})|((:[0-9A-Fa-f]{1,4}){0,2}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){2}(((:[0-9A-Fa-f]{1,4}){1,5})|((:[0-9A-Fa-f]{1,4}){0,3}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){1}(((:[0-9A-Fa-f]{1,4}){1,6})|((:[0-9A-Fa-f]{1,4}){0,4}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(:(((:[0-9A-Fa-f]{1,4}){1,7})|((:[0-9A-Fa-f]{1,4}){0,5}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:)))(%.+)?|(?<![0-9])(?:(?:[0-1]?[0-9]{1,2}|2[0-4][0-9]|25[0-5])[.](?:[0-1]?[0-9]{1,2}|2[0-4][0-9]|25[0-5])[.](?:[0-1]?[0-9]{1,2}|2[0-4][0-9]|25[0-5])[.](?:[0-1]?[0-9]{1,2}|2[0-4][0-9]|25[0-5]))(?![0-9]))|\b(?:[0-9A-Za-z][0-9A-Za-z-]{0,62})(?:\.(?:[0-9A-Za-z][0-9A-Za-z-]{0,62}))*(\.?|\b))
+```
 
 ## How to build a Grok-pattern using "default" patterns
 
@@ -26,7 +58,7 @@ The links below contains tips on how to manage multiline messages and the link a
 - Filebeat: [Examples of multiline configuration](https://www.elastic.co/guide/en/beats/filebeat/current/_examples_of_multiline_configuration.html)
 - Regex: [Using Backreferences To Match The Same Text Again](https://www.regular-expressions.info/backref.html])
 
-### Use regex anchor-points!
+### Use anchor-points!
 
 # Test your Grok-patterns
 - [Test grok patterns](http://grokconstructor.appspot.com/do/match)
